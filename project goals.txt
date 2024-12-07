@@ -1,0 +1,59 @@
+motivation:
+	I care more about location data privacy than other types of privacy
+	I wanted an exercise using location data
+	I want to "measure" how closely something/someone can be tracked
+		simulating a tracker by using a phone app that regularly gets my coordinates & bearing and writes them in a local file
+
+methodology (which aspects of the class I'm applying):
+	in preprocessing you're supposed take away identifying information (not possible in this case because the sample size is 1)
+	
+	How to manage and regulate privacy in social situations
+		• Factors affecting an individual’s privacy:
+			• Culture, personality, social norms, context of the situation
+			
+	put a node at every intersection, train a model to predict whether i go left, right or straight at every node
+		remove nodes from the data to find a threshhold → the minimum number of times I would have to be spotted for someone to deduce my route/where i live.
+
+	tracking pedestrians vs car owners
+	tracking data could be used to optimize placement of bus stops
+	
+objective:
+	identify pedestrian vs car vs public transport
+		apply fairness metrics to identification by the model
+		
+	include discussion on the ethical/unethical uses on the data/research
+	
+	sort trips into their neighborhoods of origin, are there neighborhoods that are discriminated against (use fairness metrics to see if people from chinatown are classified as pedestrians more than people from hyde park, etc)
+	
+	
+• What is the question you ask and why do we care?
+	are HMM models for transportation routes susceptible to discimination?
+	
+• How is it connected to the class?
+	applying fairness metrics
+	general location privacy concerns
+• What is the answer you found?
+	someone who spots me at x intersections, can predict my next location with some probability
+
+• What are the pitfalls you avoided?
+	selecting the right model: RF vs NN vs HMM
+		RF is very slow in this case
+		NN looks more at the "shape" of the data than the rules defining the changes in state
+		MM looks at the rules defining evolution, which would give insights on the tracked person like:
+			if previous state was at a restaurant → next they walk towards a bar
+	
+• What are the limitations?
+	not enough data → collecting more implies mass surveilance in chicago → no one wants that
+	simulated data may not give realistic results.
+	
+I am not including the data I collected abou myself, as it would be impossible to anonymize
+
+
+				bar 	intersection	restaurant
+bar				0.5			0.5				0
+
+intersection	0.3			0.4				0.3
+
+restuarant		0.2			0.1				0.7	
+
+

@@ -1,0 +1,63 @@
+approach taken
+	- possible conclusions
+	- pitfalls
+------------------------------
+A) NN to predict next location given sequence of locations
+	- accuracy/precision of model
+	- small dataset, not significant, ok accuracy
+	
+B) Entropy analysis for how unpredictable people normally are:
+	- shannon entropy, comparing to completely random route, how much information can you extract from an everyday route → how should people act to stay hidden in the group/what can be done to anonymize yourself by not acting strangely.
+	- not sure how this measurement relates to privacy/ethics
+
+C) HMM to classify car/bus/pedestrian using routes simulated from CTA bus routes
+	- accuracy, fairness metrics to see if certain neighborhoods are discriminated against by the model
+	- very low accuracy (0.2), high computing time, data is very very synthetic
+
+D) RFC to classify car/bus/pedestrian using routes simulated from CTA bus routes
+	- accuracy, fairness metrics to see if certain neighborhoods are discriminated against by the model
+	- low accuracy (0.4), higher computing time, data is very very synthetic
+
+
+
+what is the story i want to tell with the paper?
+---------------------------------
+A/B) gathered data of normal days out/running errands/going to work and class
+		how can that be detrimental to individual privacy
+			can someone who spotted me a few times predict where I go next and "catch" me?
+			
+		how can someone reduce the effectiveness of these models?
+			how can the entropy of their route increase?
+			
+	entropy relates to privacy
+	this project relates to ethics through privacy
+		
+	how long does the sequence have to be for the model error to start shrinking
+		how much data is necessary to really predict where someone goes (order of magnitude estimation)
+		
+	no length limit of minimum, try to balance detail and brevity. Not too wordy, no figures that aren't discussed. 
+			
+	split so ΔT < β: 	all the stops on a route get separated
+	get all possible consecutive subsequences of size k
+		provides memory to the chain
+		
+- define entropy ✓
+- write down which places made me lose location (park, pier, etc) ✓
+- export and explain tasker script ✓
+- try to exploit location data
+	- need to know which location data is better/more useful
+		- Shannon info theory lets you quantify missing information
+			- need to have probability of each state, but RF models do not provide these
+				- HMM do provide probabilities, but perform worse than RF and comparable to NN or SVR
+	- conversely, how can you anonymize your own location data (making your data less useful)
+		- 
+
+	
+		
+C/D) gathered data from public CTA data
+		how location data can benefit society
+			accurate information about car/bus/pedestrians can help city planning and improve public transportation routes
+		how can we get this data? surveillance is out, so we should make a model to predict instead
+			which model discriminates more?
+				why?
+					which types of models should be implemented to avoid discriminating?
